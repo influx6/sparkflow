@@ -1,0 +1,34 @@
+{
+  "name": "sparkflow",
+  "version": "0.0.1",
+  "description": "a fbp implementation ",
+  "main": "./lib/sparkflow.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/influx6/sparkflow.git"
+  },
+  "dependencies":{
+    "as-contrib":"0.x.x",
+    "em.js":"0.x.x"
+  },
+  "keywords": [
+    "sparkflow",
+    "fbp",
+    "flow",
+    "flow",
+    "based",
+    "programming"
+  ],
+  "author": "Alexander Adeniyin Alexander",
+  "license": "Mit",
+  "bugs": {
+    "url": "https://github.com/influx6/sparkflow/issues"
+  },
+  "homepage": "https://github.com/influx6/sparkflow"
+}
