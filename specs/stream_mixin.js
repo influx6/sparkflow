@@ -5,15 +5,9 @@ module.exports = function(m,sk,as){
 
     m.scoped('sparkflow stream mixin');
     var stream = sk.Mixins.StreamMixin();
-    var groupMatch  = function(message,count,tag){
-      return inv.effectCountOnce(function(i){
-          m.scoped(message).obj(i).is(tag);
-      },count);
-    };
 
-    var groupbeginMatch = groupMatch('sample from group begintag',0,'<number>'),
-    groupDataMatch = groupMatch('sample from group data',1,1),
-    groupEndMatch = groupMatch('sample from group endtag',2,'</number>');
+    var groupMatch = m.groupMatcher([['sample from group begintag',0,'is','<number>'],
+    ,['sample from group data',1,'is',1],['sample from group endtag',2,'is','</number>']]);
     
     m.obj(stream).isValid();
     m.obj(stream.streams()).isValid().isInstanceOf(as.Streams.EventStreams);
@@ -28,9 +22,7 @@ module.exports = function(m,sk,as){
     
 
     stream.streams('group').tell(function(n){
-      groupDataMatch(n);
-      groupEndMatch(n);
-      groupbeginMatch(n);
+      groupMatch(n);
     });
 
     stream.streams('beginGroup').emit('<number>');
