@@ -19,6 +19,9 @@ module.exports = function(m,s,a){
     m.scoped('component:example');
     m.obj(example.uuid).isString().length(7);
     m.obj(example.id.split('-')).isArray().length(2);
-
-    console.log(example,example.id.split('-'));
+    
+    //connect example in port to dummy in port with example 'exampleIn' alias socket
+    example.connect('out',dummy,'in','exampleOut');
+    
+    console.log(example.port('in'));
 };
