@@ -20,8 +20,11 @@ module.exports = function(m,s,a){
     m.obj(example.uuid).isString().length(7);
     m.obj(example.id.split('-')).isArray().length(2);
     
+    m.scoped('component out port to dummy inport');
     //connect example in port to dummy in port with example 'exampleIn' alias socket
     example.connect('out',dummy,'in','exampleOut');
     
-    console.log(example.port('in'));
+    m.obj(dummy.port('in').sockets().length).is(1);
+    m.obj(dummy.port('in').totalSockets()).is(1);
+    m.obj(dummy.port('in').totalConnectedOnSocket(0)).is(1);
 };
